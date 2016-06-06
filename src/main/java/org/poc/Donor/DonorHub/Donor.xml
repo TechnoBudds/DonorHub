@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="Donor" type="org.poc.Donor.DonorHub.Model.Donor" />
+<resultMap id="donor" class="Donor">
+<result property="donorName" column="DONORNAME" />
+<result property="donorId" column="DONORID" />
+<result property="bloodGroup" column="BLOODGROUP" />
+<result property="contactNumber" column="CONTACTNUMBER" />
+</resultMap>
+<select id="donorIdInXml" parameterClass="String" resultMap="donor">
+select * from DONOR where DONORID = #donorId#
+</select>
+
+<select id="getAllDonors"  resultMap="donor">
+select * from DONOR
+</select> 
+
+<insert id="insertDonorInfo" parameterClass="java.util.Map" >
+insert into DONOR values(#DONORNAME#,#DONORID#,#BLOODGROUP#,#CONTACTNUMBER#)
+</insert> 
+
+
+</sqlMap>

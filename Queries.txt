@@ -1,0 +1,27 @@
+alter table DONOR alter column ACTIVE varchar2(3) primary key
+
+
+
+create table DONOR(DONORID varchar2(5)  primary key,
+                   DONORNAME varchar2(18),
+                   BLOODGROUP varchar2(4),
+                   CONTACTNUMBER number(10),
+                   ADDRESS varchar2(28),
+                   CREATE_TS timestamp,
+                   UPDT_TS timestamp,
+                   ACTIVE varchar2(3),
+                   LASTDONATED timestamp,
+		   HISTORYJSON varchar(3000));
+                   
+create table BLOODBANK(BANKID varchar2(5) primary key,
+                       BANKNAME varchar2(15),
+                       ADDRESS varchar2(18),
+                       CONTACTNUMBER number(10),
+                       CREATE_TS timestamp,
+                       UPDT_TS timestamp
+                       )   
+create table BLOODGROUP(BANKID varchar2(5),
+                        DONORID varchar2(5),
+                        QUANTITY number(6),
+                        FOREIGN KEY (BANKID) REFERENCES BLOODBANK(BANKID),
+                        FOREIGN KEY (DONORID) REFERENCES DONOR(DONORID));

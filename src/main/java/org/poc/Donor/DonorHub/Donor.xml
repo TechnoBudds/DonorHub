@@ -24,8 +24,12 @@ select * from DONOR where DONORID = #donorId#
 select * from DONOR
 </select> 
 
+<select id="getDONORID"  resultClass="java.lang.Long">
+select DONOR_SEQ_ID.nextval from dual
+</select> 
+
 <insert id="insertDonorInfo" parameterClass="java.util.Map" >
-insert into DONOR values(#DONORNAME#,#DONORID#,#BLOODGROUP#,#CONTACTNUMBER#)
+insert into DONOR values(#DONORID#,#DONORNAME#,#BLOODGROUP#,#CONTACTNUMBER#,#ADDRESS#,current_timestamp,current_timestamp,#ACTIVE#,current_timestamp,#HISTORYJSON#)
 </insert> 
 
 

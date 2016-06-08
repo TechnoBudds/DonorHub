@@ -3,6 +3,7 @@ package org.poc.Donor.DonorHub.Service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.poc.Donor.DonorHub.Model.Donor;
@@ -23,10 +24,8 @@ public class DonorService {
 			e.printStackTrace();
 		}
 		System.out.println("size-->" + donorList.size());
-		for (Donor donor : (ArrayList<Donor>) donorList) {
-			return donor;
-		}
-		return null;
+		
+		return (donorList.size()>0)?donorList.get(0):null;
 
 	}
 
@@ -42,26 +41,49 @@ public class DonorService {
 	}
 
 	public ArrayList<Donor> insertNewDonor(Donor donor) {
+		Boolean insertFlag=true;
 		Map donorMap= new HashMap();
 		donorMap.put("DONORNAME", donor.getDonorName());
-		donorMap.put("DONORID", donor.getDonorId());
+		donorMap.put("DONORID", getDonorId()+"");
 		donorMap.put("BLOODGROUP", donor.getBloodGroup());
 		donorMap.put("CONTACTNUMBER", donor.getContactNumber());
-		//Boolean insertFlag = false;
+		donorMap.put("ADDRESS", donor.getAddress());
+		donorMap.put("ACTIVE", donor.getActive());
+				
 		try {
 		new SQLUtil().getSqlInstance().insert("insertDonorInfo", donorMap);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (SQLException e) {
+			insertFlag=false;
 			e.printStackTrace();
 		}
-		//System.out.println("insertFlag-->"+insertFlag);
-		//if(insertFlag)
-		//{
-		return ((ArrayList<Donor>) getAllDonors());
-	/*	}
-		else
+		catch(Exception ex)
 		{
-			return null;
+			insertFlag=false;
+			ex.printStackTrace();
 		}
-*/	}
+		
+		
+		return insertFlag?((ArrayList<Donor>) getAllDonors()):null;	
+	}
+	
+	
+	public long getDonorId()
+	{
+		List<Long> donorIdList= new ArrayList<Long>();
+		Long donorID=0L;
+		try{
+			donorIdList=(ArrayList<Long>)new SQLUtil().getSqlInstance().queryForList("getDONORID");
+			for(Long donorId: (ArrayList<Long>)donorIdList)
+			{
+				donorID=donorId;
+			}
+		}
+		catch(SQLException ex)
+		{
+			ex.printStackTrace();
+		}
+		
+		return donorID.longValue();
+	}
 }

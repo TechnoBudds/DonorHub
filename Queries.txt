@@ -25,3 +25,22 @@ create table BLOODGROUP(BANKID varchar2(5),
                         QUANTITY number(6),
                         FOREIGN KEY (BANKID) REFERENCES BLOODBANK(BANKID),
                         FOREIGN KEY (DONORID) REFERENCES DONOR(DONORID));
+                        
+                        
+                        
+
+CREATE SEQUENCE DONOR_SEQ_ID
+ START WITH     200
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ select DONOR_SEQ_ID.nextval from dual
+ 
+ CREATE SEQUENCE BLOODBANK_SEQ_ID
+ START WITH     100
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ select BLOODBANK_SEQ_ID.nextval from dual

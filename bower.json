@@ -1,0 +1,20 @@
+{
+  "name": "DonorHub",
+  "homepage": "https://github.com/TechnoBudds/DonorHub",
+  "authors": [
+    "Kavis Pandey <joinkd2222@gmail.com>"
+  ],
+  "description": "DonorHub repo",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.5.0"
+  }
+}

@@ -42,7 +42,7 @@ public class DonorService {
 	}
 
 	public ArrayList<Donor> insertNewDonor(Donor donor) {
-		Map<String,String> donorMap= new HashMap<String,String>();
+		Map donorMap= new HashMap();
 		donorMap.put("DONORNAME", donor.getDonorName());
 		donorMap.put("DONORID", donor.getDonorId());
 		donorMap.put("BLOODGROUP", donor.getBloodGroup());

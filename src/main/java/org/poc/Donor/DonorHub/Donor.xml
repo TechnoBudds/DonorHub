@@ -9,6 +9,12 @@
 <result property="donorId" column="DONORID" />
 <result property="bloodGroup" column="BLOODGROUP" />
 <result property="contactNumber" column="CONTACTNUMBER" />
+<result property="address" column="ADDRESS" />
+<result property="active" column="ACTIVE" />
+<result property="crte_ts" column="CREATE_TS" />
+<result property="updt_ts" column="UPDT_TS" />
+<result property="lastDonated" column="LASTDONATED" />
+
 </resultMap>
 <select id="donorIdInXml" parameterClass="String" resultMap="donor">
 select * from DONOR where DONORID = #donorId#
